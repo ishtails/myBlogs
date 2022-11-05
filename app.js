@@ -41,6 +41,10 @@ app.post('/blogs', (req, res) => {
         .catch((err) => {console.log(err)});
 })
 
+app.delete('/blogs', (req, res) => {
+    Blog.findByIdAndDelete(id)
+})
+
 app.get('/about', (req, res) => {
     res.render('about' , { heading: 'About'});
 });
@@ -55,6 +59,16 @@ app.get('/blogs/:id', (req, res) => {
     Blog.findById(id)
         .then((result) => {
             res.render('details', {heading: 'Blog Details', blog: result})
+        })
+        .catch((err)=>{console.log(err)});
+})
+
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+
+    Blog.findByIdAndDelete(id)
+        .then(result => {
+            res.json({ redirect: '/blogs' })
         })
         .catch((err)=>{console.log(err)});
 })

@@ -4,9 +4,30 @@
 <body>
     <%- include('./partials/nav.ejs') %> 
 
-    <div class="flex flex-col m-7 space-y-5 justify-center items-center">
-            <h3 class="text-3xl font-extrabold"> <%= blog.title %> </h3>
+    <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col m-7 space-y-5 justify-center items-center">
+            <h3 class="text-3xl font-extrabold"> <%= blog.title %></h3>
             <p class="text-gray-600 max-w-7xl"> <%= blog.body %> </p>
+        </div>
+    
+        <a class="py-5 hover:scale-110 transition-all cursor-pointer" data-doc="<%= blog._id %>" id="delete-blog">
+            <img src="/trash3.svg" class="w-10" alt="Trash">
+        </a>
+
+        <footer class="py-5 self-center">© 2022 ishtails. All rights reserved</footer>
     </div>
 </body>
+
+<script>
+    const trash = document.getElementById('delete-blog')
+    trash.addEventListener('click', (e)=>{
+        const endpoint = `/blogs/${trash.dataset.doc}`;
+        fetch(endpoint, {
+            method: 'DELETE',
+        })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch((err) => {console.log(err)});
+    })
+</script>
 </html>
