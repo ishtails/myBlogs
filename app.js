@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require("morgan");
 const app = express();
-const Blog = require('./models/blog')
+const Blog = require('./models/blog');
+const { urlencoded } = require("express");
 
 //MongoDB
 const dbURI = 'mongodb+srv://ishtails:ishtails123@styles.1714pc8.mongodb.net/myBlog?retryWrites=true&w=majority'
@@ -15,6 +16,7 @@ mongoose.connect(dbURI)
 //Express
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
+app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
@@ -25,6 +27,16 @@ app.get('/blogs', (req, res) => {
     Blog.find().sort({ createdAt: -1 })
         .then((result) => {
             res.render('index', { heading: 'Home', blogs: result});
+        })
+        .catch((err) => {console.log(err)});
+})
+
+app.post('/blogs', (req, res) => {
+    const blog = new Blog(req.body);
+
+    blog.save()
+        .then((result) => {
+            res.redirect('/blogs');
         })
         .catch((err) => {console.log(err)});
 })

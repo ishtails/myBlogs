@@ -11,15 +11,15 @@
                 <h3 class="text-sm text-gray-700">Write your thoughts down below...</h3>
             </div>
     
-            <form class="flex flex-col items-center justify-center space-y-3 mx-5">
+            <form class="flex flex-col items-center justify-center space-y-3 mx-5" action="/blogs" method="post">
                 <label for="title" class="text-gray-700">Blog Title</label>
-                <input class="h-8 w-full max-w-xl p-4" type="text" required>
+                <input name="title"  class="h-8 w-full max-w-xl p-4" type="text" required>
     
                 <label for="title" class="text-gray-700">Blog Snippet</label>
-                <textarea class="h-24 w-full max-w-xl p-4" type="text" required></textarea>
+                <textarea name="snippet" class="h-24 w-full max-w-xl p-4" type="text" required></textarea>
     
                 <label for="title" class="text-gray-700">Blog Body</label>
-                <textarea class="h-52 w-full max-w-xl p-4" type="text" required></textarea>
+                <textarea name="body" class="h-52 w-full max-w-xl p-4" type="text" required></textarea>
     
                 <button class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded transition-all">Submit</button>
             </form>
