@@ -5,19 +5,21 @@
     <%- include('./partials/nav.ejs') %> 
 
     <div class="flex flex-col items-center justify-center">
-        <h2 class="text-3xl font-medium text-gray-700 tracking-wide">My Feed</h2>
+        <h2 class="text-3xl font-medium text-gray-700 tracking-wide">Feed</h2>
     </div>
 
-    <div class="flex flex-col p-5">
+    <div class="flex flex-col m-5 space-y-5" id="blog-card">
         <% if(blogs.length > 0){ %>
             <% blogs.forEach(blog => { %> 
-                <h3 class="text-3xl"> <%= blog.title %> </h3>
-                <p class="py-1"> <%= blog.snippet %> </p>
-                <br/>
+                <a class="flex flex-col space-y-2 justify-center items-center mx-auto rounded-md w-full max-w-7xl min-h-[150px] h-fit bg-gray-200 hover:scale-110 transition-all p-7" href="/blogs/<%= blog.id %>">
+                    <h3 class="text-3xl text-rose-500"> <%= blog.title %> </h3>
+                    <p class="text-gray-600"> <%= blog.snippet %> </p>
+                </a>
             <% }); %>
         <% } else { %> 
-            <p>No blogs to display!</p>
+            <p class="flex flex-col space-y-2 justify-center items-center text-xl text-gray-500">No blogs to display!</p>
         <% } %> 
     </div>
 </body>
+</script>
 </html>

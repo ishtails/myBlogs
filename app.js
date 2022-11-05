@@ -41,6 +41,16 @@ app.post('/blogs', (req, res) => {
         .catch((err) => {console.log(err)});
 })
 
+app.get('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+
+    Blog.findById(id)
+        .then((result) => {
+            res.render('details', {heading: 'Blog Details', blog: result})
+        })
+        .catch((err)=>{console.log(err)});
+})
+
 app.get('/about', (req, res) => {
     res.render('about' , { heading: 'About'});
 });
