@@ -7,5 +7,17 @@
     <div class="flex flex-col items-center justify-center">
         <h2 class="text-3xl font-medium text-gray-700 tracking-wide">My Feed</h2>
     </div>
+
+    <div class="flex flex-col p-5">
+        <% if(blogs.length > 0){ %>
+            <% blogs.forEach(blog => { %> 
+                <h3 class="text-3xl"> <%= blog.title %> </h3>
+                <p class="py-1"> <%= blog.snippet %> </p>
+                <br/>
+            <% }); %>
+        <% } else { %> 
+            <p>No blogs to display!</p>
+        <% } %> 
+    </div>
 </body>
 </html>
