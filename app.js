@@ -41,6 +41,14 @@ app.post('/blogs', (req, res) => {
         .catch((err) => {console.log(err)});
 })
 
+app.get('/about', (req, res) => {
+    res.render('about' , { heading: 'About'});
+});
+
+app.get('/blogs/create', (req, res) => {
+    res.render('create' , { heading: 'Create Blog'});
+});
+
 app.get('/blogs/:id', (req, res) => {
     const id = req.params.id;
 
@@ -50,14 +58,6 @@ app.get('/blogs/:id', (req, res) => {
         })
         .catch((err)=>{console.log(err)});
 })
-
-app.get('/about', (req, res) => {
-    res.render('about' , { heading: 'About'});
-});
-
-app.get('/blogs/create', (req, res) => {
-    res.render('create' , { heading: 'Create Blog'});
-});
 
 app.use((req, res)=>{
     res.status(404).render('404' , { heading: 'Page Not Found'});
