@@ -7,7 +7,7 @@
     <div class="flex flex-col items-center justify-center space-y-8">
         <h2 class="text-4xl font-light text-gray-700 tracking-wide">Feed</h2>
     
-        <div class="flex flex-col m-5 space-y-6" id="blog-card">
+        <div class="flex flex-col space-y-5 m-10" id="blog-card">
             <% if(blogs.length > 0){ %>
                 <% blogs.forEach(blog => { %> 
                     <a class="flex flex-col space-y-2 justify-center items-center mx-auto rounded-md w-full max-w-7xl min-h-[150px] h-fit bg-gray-200 hover:scale-[105%] transition-all p-8" href="/blogs/<%= blog.id %>">
@@ -19,8 +19,6 @@
                     <p class="flex flex-col space-y-2 justify-center items-center text-xl text-gray-500">No blogs to display!</p>
             <% } %> 
         </div>
-
-        <footer class="py-5">© 2022 ishtails. All rights reserved</footer>
     </div>
 </body>
 </script>

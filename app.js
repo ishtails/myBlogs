@@ -4,12 +4,15 @@ const morgan = require("morgan");
 const app = express();
 const Blog = require('./models/blog');
 const { urlencoded } = require("express");
+require('dotenv').config()
 
 //MongoDB
-const dbURI = 'mongodb+srv://ishtails:ishtails123@styles.1714pc8.mongodb.net/myBlog?retryWrites=true&w=majority'
+const dbURI = process.env.MONG_URI
 mongoose.connect(dbURI)
     .then((result)=>{
-        const server = app.listen(3000);
+        const server = app.listen(process.env.PORT, ()=>{
+            console.log("Connected!")
+        });
     })
     .catch((err)=>{console.log(err)});
 
